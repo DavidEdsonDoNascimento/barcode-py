@@ -1,3 +1,9 @@
+# Run project
+
+```ch
+sh run.sh
+```
+
 ## step by step to build the script
 
 I used the python3 -m instruction so I didn't need to install a library on the machine but rather in a virtual environment.
