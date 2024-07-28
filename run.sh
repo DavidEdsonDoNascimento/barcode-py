@@ -1,1 +1,1 @@
-python3 main.py
+python3 generate_barcode_cli.py

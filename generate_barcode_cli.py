@@ -2,13 +2,17 @@ from os import getcwd, path, mkdir
 from uuid import uuid4
 from random import randint
 from barcode import generate
-from barcode.base import SVGWriter
+from barcode.writer import SVGWriter, ImageWriter
 
 root_dir = getcwd()
 print("current directory: " + root_dir)
 
 output = input("output directory:")
 filename = input("filename:")
+filetype = input("""filetype
+[1] PNG 
+[Any other] SVG
+""")
 
 output = "/downloads" if not output else path.join("/" + output)
 filename = (
@@ -28,12 +32,14 @@ random_code_2 = randint(RANGE_INITIAL, RANGE_FINAL)
 
 hash = str(random_code_1) + str(random_code_2)
 
+writer = SVGWriter() if filetype != "1" else ImageWriter()
+
 bar_code = generate(
     "ean",
     hash,
-    SVGWriter(),
+    writer,
     path_new_file + filename,
-    {"format": False},
+    {"format": "PNG"},
     text=hash,
 )
 
